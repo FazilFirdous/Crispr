@@ -15,6 +15,7 @@ import random
 import sys
 
 # Database config
+#update to your if you want###
 DB_CONFIG = {
     'host': 'auth-db677.hstgr.io',
     'port': 3306,
@@ -26,9 +27,9 @@ DB_CONFIG = {
 class LibraryImporter:
     def __init__(self):
         print("=" * 90)
-        print("🚀 SCIENCECORE ULTIMATE LIBRARY IMPORTER")
-        print("📚 Importing REAL CRISPR Libraries: Brunello, GeCKO, TKOv3, Brie, Sabatini")
-        print("🎯 TARGET: 100,000+ validated guides from published sources")
+        print(" SCIENCECORE ULTIMATE LIBRARY IMPORTER")
+        print(" Importing REAL CRISPR Libraries: Brunello, GeCKO, TKOv3, Brie, Sabatini")
+        print(" TARGET: 100,000+ validated guides from published sources")
         print("=" * 90)
         
         self.db = mysql.connector.connect(**DB_CONFIG)
@@ -283,9 +284,9 @@ class LibraryImporter:
         library_info = self.libraries[library_key]
         
         print("\n" + "=" * 80)
-        print(f"📚 IMPORTING: {library_info['name']}")
-        print(f"📊 Target: {library_info['total_guides']:,} guides across {library_info['genes']:,} genes")
-        print(f"📄 Paper: {library_info['paper']}")
+        print(f" IMPORTING: {library_info['name']}")
+        print(f" Target: {library_info['total_guides']:,} guides across {library_info['genes']:,} genes")
+        print(f" Paper: {library_info['paper']}")
         print("=" * 80)
         
         self.stats['by_library'][library_key] = {'added': 0, 'duplicates': 0}
@@ -350,16 +351,16 @@ class LibraryImporter:
         avg_efficiency = self.cursor.fetchone()[0]
         
         print("\n" + "=" * 90)
-        print("🎉 LIBRARY IMPORT COMPLETE!")
+        print(" LIBRARY IMPORT COMPLETE!")
         print("=" * 90)
-        print(f"⏰ Duration: {hours}h {minutes}m {seconds}s")
-        print(f"📥 Guides imported: {self.stats['total_added']:,}")
-        print(f"↩️  Duplicates skipped: {self.stats['duplicates']:,}")
-        print(f"💾 Total in database: {total_in_db:,}")
-        print(f"🧬 Unique genes: {unique_genes:,}")
-        print(f"⚡ Average efficiency: {avg_efficiency:.1f}%")
+        print(f" Duration: {hours}h {minutes}m {seconds}s")
+        print(f" Guides imported: {self.stats['total_added']:,}")
+        print(f"  Duplicates skipped: {self.stats['duplicates']:,}")
+        print(f" Total in database: {total_in_db:,}")
+        print(f" Unique genes: {unique_genes:,}")
+        print(f" Average efficiency: {avg_efficiency:.1f}%")
         
-        print("\n📊 BY LIBRARY:")
+        print("\n BY LIBRARY:")
         for lib_key, lib_stats in self.stats['by_library'].items():
             lib_name = self.libraries[lib_key]['name']
             print(f"   {lib_name}: {lib_stats['added']:,} guides")
