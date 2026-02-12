@@ -126,11 +126,11 @@ class CRISPRMonitor:
         })
         
         logger.info("=" * 90)
-        logger.info("🚀 SCIENCECORE 24/7 CRISPR MONITOR INITIALIZED")
-        logger.info(f"📅 Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-        logger.info(f"⏰ Cycle interval: {SCRAPE_CONFIG['cycle_hours']} hours")
-        logger.info(f"💓 Heartbeat interval: {SCRAPE_CONFIG['heartbeat_minutes']} minutes")
-        logger.info(f"🏥 Health check interval: {SCRAPE_CONFIG['health_check_minutes']} minutes")
+        logger.info(" SCIENCECORE 24/7 CRISPR MONITOR INITIALIZED")
+        logger.info(f" Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        logger.info(f" Cycle interval: {SCRAPE_CONFIG['cycle_hours']} hours")
+        logger.info(f" Heartbeat interval: {SCRAPE_CONFIG['heartbeat_minutes']} minutes")
+        logger.info(f" Health check interval: {SCRAPE_CONFIG['health_check_minutes']} minutes")
         logger.info("=" * 90)
     
     def _signal_handler(self, signum, frame):
@@ -195,7 +195,7 @@ class CRISPRMonitor:
             recent = cursor.fetchone()['recent']
             
             self.stats['database_health'] = 'healthy'
-            logger.info(f"🏥 Database health check: OK (Total: {total:,}, Last 24h: {recent:,})")
+            logger.info(f" Database health check: OK (Total: {total:,}, Last 24h: {recent:,})")
             
             cursor.close()
             return True
@@ -377,7 +377,7 @@ class CRISPRMonitor:
     
     def _scrape_github(self) -> List[Dict]:
         """Check GitHub for new CRISPR datasets"""
-        logger.info("📦 Checking GitHub for new CRISPR datasets...")
+        logger.info(" Checking GitHub for new CRISPR datasets...")
         guides = []
         
         try:
@@ -414,7 +414,7 @@ class CRISPRMonitor:
     
     def _scrape_addgene(self) -> List[Dict]:
         """Check Addgene for new plasmids"""
-        logger.info("🧬 Checking Addgene for new CRISPR plasmids...")
+        logger.info(" Checking Addgene for new CRISPR plasmids...")
         guides = []
         
         try:
@@ -477,7 +477,7 @@ class CRISPRMonitor:
     
     def _scrape_broad(self) -> List[Dict]:
         """Check Broad Institute updates"""
-        logger.info("🏛️ Checking Broad Institute for library updates...")
+        logger.info(" Checking Broad Institute for library updates...")
         guides = []
         
         try:
@@ -511,8 +511,8 @@ class CRISPRMonitor:
         
         logger.info("")
         logger.info("=" * 90)
-        logger.info(f"🔄 CYCLE #{self.cycle_count} STARTING")
-        logger.info(f"⏰ Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        logger.info(f" CYCLE #{self.cycle_count} STARTING")
+        logger.info(f" Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         logger.info("=" * 90)
         
         try:
@@ -558,7 +558,7 @@ class CRISPRMonitor:
                 all_guides.extend(broad_guides)
                 self.sources['BROAD']['guides_added'] += len(broad_guides)
             
-            logger.info(f"\n📥 Total guides collected: {len(all_guides)}")
+            logger.info(f"\n Total guides collected: {len(all_guides)}")
             
             # Insert in batches
             total_added = 0
@@ -590,13 +590,13 @@ class CRISPRMonitor:
             
             # Log results
             duration = time.time() - cycle_start
-            logger.info(f"\n📊 CYCLE #{self.cycle_count} RESULTS:")
-            logger.info(f"   ✅ Added: {total_added:,} new guides")
-            logger.info(f"   ↩️  Duplicates: {total_dups:,}")
-            logger.info(f"   💾 Database total: {db_total:,}")
-            logger.info(f"   🧬 Unique genes: {gene_count:,}")
-            logger.info(f"   ⏱️  Duration: {duration:.1f}s")
-            logger.info(f"   📈 All-time total: {self.total_guides_added:,}")
+            logger.info(f"\n CYCLE #{self.cycle_count} RESULTS:")
+            logger.info(f"    Added: {total_added:,} new guides")
+            logger.info(f"     Duplicates: {total_dups:,}")
+            logger.info(f"     Database total: {db_total:,}")
+            logger.info(f"     Unique genes: {gene_count:,}")
+            logger.info(f"     Duration: {duration:.1f}s")
+            logger.info(f"     All-time total: {self.total_guides_added:,}")
             logger.info("=" * 90)
             
             cursor.close()
@@ -637,7 +637,7 @@ class CRISPRMonitor:
     
     def _health_check(self):
         """Perform comprehensive health check"""
-        logger.info("🏥 Performing health check...")
+        logger.info(" Performing health check...")
         
         db = self._connect_database()
         if db:
@@ -666,7 +666,7 @@ class CRISPRMonitor:
         heartbeat_interval = SCRAPE_CONFIG['heartbeat_minutes'] * 60
         health_interval = SCRAPE_CONFIG['health_check_minutes'] * 60
         
-        logger.info("🚀 Starting continuous monitoring loop...")
+        logger.info(" Starting continuous monitoring loop...")
         
         # Run initial cycle immediately
         self._run_scrape_cycle()
@@ -717,14 +717,14 @@ class CRISPRMonitor:
         
         logger.info("")
         logger.info("=" * 90)
-        logger.info("🛑 INITIATING GRACEFUL SHUTDOWN")
+        logger.info(" INITIATING GRACEFUL SHUTDOWN")
         logger.info("=" * 90)
-        logger.info(f"📊 Total cycles: {self.cycle_count}")
-        logger.info(f"✅ Successful: {self.stats['successful_cycles']}")
-        logger.info(f"❌ Failed: {self.stats['failed_cycles']}")
-        logger.info(f"📥 Total guides added: {self.total_guides_added:,}")
-        logger.info(f"⏱️  Total uptime: {hours}h {minutes}m")
-        logger.info(f"📅 Shutdown time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        logger.info(f" Total cycles: {self.cycle_count}")
+        logger.info(f" Successful: {self.stats['successful_cycles']}")
+        logger.info(f" Failed: {self.stats['failed_cycles']}")
+        logger.info(f" Total guides added: {self.total_guides_added:,}")
+        logger.info(f"  Total uptime: {hours}h {minutes}m")
+        logger.info(f" Shutdown time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         
         # Save final stats
         self._save_stats()
