@@ -478,7 +478,7 @@ Computational Biology Developer
 Kashmir, India
 
 - Website: [sciencecore.in](https://sciencecore.in)
-- GitHub: [@eleosvanberg](https://github.com/eleosvanberg)
+- GitHub: [@FazilFirdous](https://github.com/FazilFirdous)
 
 ---
 
